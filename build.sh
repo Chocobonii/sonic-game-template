@@ -27,7 +27,7 @@ print_version() {
 # 
 # THIS IS THE SCRIPT THAT WILL ASSEMBLE THE COMPLETE CODE OF THE GAME INCLUDING THE SERVER
 #
-strval1=""$1
+strval1="$1"
 strval2="--client-audio"
 strval3="--client-silent"
 strval5="--version"
@@ -53,6 +53,7 @@ else
   if [ -n "$(command -v yum)" ]; then sudo yum install g++; fi
   if [ -n "$(command -v pacman)" ]; then sudo pacman -S g++; fi
   if [ -n "$(command -v apt-get)" ]; then sudo apt-get install g++; fi
+  if [ -n "$(command -v emerge)" ]; then sudo emerge sys-devel/gcc; fi
   if [[ "$OSTYPE" == "win32" ]]; then "this script cannot install g++ on windows :/"; fi
   echo "this script tried installing g++ run again if g++ was installed";
   exit 0;
@@ -66,6 +67,7 @@ else
   if [ -n "$(command -v yum)" ]; then sudo yum install git; fi
   if [ -n "$(command -v pacman)" ]; then sudo pacman -S git; fi
   if [ -n "$(command -v apt-get)" ]; then sudo apt-get install git; fi
+  if [ -n "$(command -v emerge)" ]; then sudo emerge dev-vcs/git; fi
   if [[ "$OSTYPE" == "win32" ]]; then echo "this script cannot install git on windows :/"; fi
   echo "this script tried installing git run again if git was installed";
   exit 0;
@@ -79,6 +81,7 @@ else
   if [ -n "$(command -v yum)" ]; then sudo yum install freeglut; fi
   if [ -n "$(command -v pacman)" ]; then sudo pacman -S freeglut; fi
   if [ -n "$(command -v apt-get)" ]; then sudo apt-get install freeglut3-dev; fi
+  if [ -n "$(command -v emerge)" ]; then sudo emerge media-libs/freeglut; fi
   if [[ "$OSTYPE" == "win32" ]]; then echo "this script cannot install glut on windows :/"; fi
   echo "this script tried installing glut run again if glut was installed";
   exit 0;
@@ -92,8 +95,9 @@ else
   if [ -n "$(command -v yum)" ]; then sudo yum install curl lib32-curl; fi
   if [ -n "$(command -v pacman)" ]; then sudo pacman -S curl lib32-curl; fi
   if [ -n "$(command -v apt-get)" ]; then sudo apt-get install curl libcurl4-openssl-dev; fi
-  if [[ "$OSTYPE" == "win32" ]]; then echo "this script cannot install glut on windows :/"; fi
-  echo "this script tried installing glut run again if glut was installed";
+  if [ -n "$(command -v pacman)" ]; then sudo emerge net-misc/curl; fi
+  if [[ "$OSTYPE" == "win32" ]]; then echo "this script cannot install curl on windows :/"; fi
+  echo "this script tried installing curl run again if curl was installed";
   exit 0;
 fi
 
