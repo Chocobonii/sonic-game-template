@@ -95,7 +95,7 @@ else
   if [ -n "$(command -v yum)" ]; then sudo yum install curl lib32-curl; fi
   if [ -n "$(command -v pacman)" ]; then sudo pacman -S curl lib32-curl; fi
   if [ -n "$(command -v apt-get)" ]; then sudo apt-get install curl libcurl4-openssl-dev; fi
-  if [ -n "$(command -v pacman)" ]; then sudo emerge net-misc/curl; fi
+  if [ -n "$(command -v emerge)" ]; then sudo emerge net-misc/curl; fi
   if [[ "$OSTYPE" == "win32" ]]; then echo "this script cannot install curl on windows :/"; fi
   echo "this script tried installing curl run again if curl was installed";
   exit 0;
